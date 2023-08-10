@@ -5,9 +5,18 @@ import Create from './Create';
 import '../styles/dashboard.css'
 import { API_URL } from '../data/Url';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [apiData, setAPIData] = useState([])
+  const navigate = useNavigate();
+  const [apiData, setAPIData] = useState([]);
+  const updateUser = ({ firstName, lastName, checked }) => {
+    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('lastName', lastName);
+    localStorage.setItem('checked', checked);
+
+    navigate('/edituser');
+  }
 
   const callGetAPI = async () => {
     const res = await axios.get(API_URL);
@@ -41,7 +50,7 @@ const Dashboard = () => {
                   <Table.Cell>{ele.lastName}</Table.Cell>
                   <Table.Cell>{ele.checked ? 'checked' : 'unchecked'}</Table.Cell>
                   <Table.Cell><Button onClick={() => deleteUser(ele.id)}>Delete</Button></Table.Cell>
-                  <Table.Cell><Button onClick={() => updateUser(ele.id)}>Update</Button></Table.Cell>
+                  <Table.Cell><Button onClick={() => updateUser(ele)}>Update</Button></Table.Cell>
 
                 </Table.Row>
               ))}
@@ -50,9 +59,7 @@ const Dashboard = () => {
             </Table.Body>
           </Table>
         </div>
-        <div>
-          <Create />
-        </div>
+
 
       </div>
 
