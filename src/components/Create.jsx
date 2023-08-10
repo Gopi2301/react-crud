@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { API_URL } from '../data/Url'
 import { Form, Button, Checkbox } from 'semantic-ui-react'
+import data from '../data/userData'
 
 const Create = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [checked, setChecked] = useState(false);
+    console.log(data)
 
-    const postData = () => {
-        console.log(firstName, lastName)
-    }
     return (
         <div>
 
