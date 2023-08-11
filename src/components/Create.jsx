@@ -4,12 +4,14 @@ import { Form, Button, Checkbox } from 'semantic-ui-react'
 import data from '../data/userData'
 import axios from 'axios'
 import Dashboard from './Dashboard'
+import { useNavigate } from 'react-router-dom'
 
 
 const Create = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [checked, setChecked] = useState(false);
+    const navigate = useNavigate()
     const postData = async () => {
         await axios.post(API_URL, {
             firstName,
@@ -37,6 +39,7 @@ const Create = () => {
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
+            <Button onClick={() => navigate('/')}>GO to DashBoard</Button>
         </div>
     )
 }

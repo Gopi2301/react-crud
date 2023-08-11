@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import UserData from '../data/userData'
-import { Button, Table } from 'semantic-ui-react';
-import Create from './Create';
-import '../styles/dashboard.css'
-import { API_URL } from '../data/Url';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import UserData from "../data/userData";
+import { Button, Table } from "semantic-ui-react";
+import Create from "./Create";
+import "../styles/dashboard.css";
+import { API_URL } from "../data/Url";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [apiData, setAPIData] = useState([]);
-  const updateUser = ({ firstName, lastName, checked }) => {
-    localStorage.setItem('firstName', firstName);
-    localStorage.setItem('lastName', lastName);
-    localStorage.setItem('checked', checked);
-
-    navigate('/edituser');
-  }
+  const updateUser = ({ firstName, lastName, checked, id }) => {
+    localStorage.setItem("firstName", firstName);
+    localStorage.setItem("lastName", lastName);
+    localStorage.setItem("checked", checked);
+    localStorage.setItem("id", id);
+    navigate("/edituser");
+  };
 
   const callGetAPI = async () => {
     const res = await axios.get(API_URL);
-    setAPIData(res.data)
-  }
-  useEffect(() => { callGetAPI() }, [])
+    setAPIData(res.data);
+  };
+  useEffect(() => {
+    callGetAPI();
+  }, []);
   const deleteUser = async (id) => {
-    await axios.delete(API_URL + '/' + id)
-    callGetAPI()
-  }
+    await axios.delete(API_URL + "/" + id);
+    callGetAPI();
+  };
   return (
-    <div className='container'>
+    <div className="container">
       <h1>DashBoard</h1>
-      <div className='dashboard'>
-        <div className=''>
+      <div className="dashboard">
+        <div className="">
           <h2>User Data</h2>
           <Table>
             <Table.Header>
@@ -44,28 +46,28 @@ const Dashboard = () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {apiData.map(ele => (
+              {apiData.map((ele) => (
                 <Table.Row key={ele.id}>
                   <Table.Cell>{ele.firstName}</Table.Cell>
                   <Table.Cell>{ele.lastName}</Table.Cell>
-                  <Table.Cell>{ele.checked ? 'checked' : 'unchecked'}</Table.Cell>
-                  <Table.Cell><Button onClick={() => deleteUser(ele.id)}>Delete</Button></Table.Cell>
-                  <Table.Cell><Button onClick={() => updateUser(ele)}>Update</Button></Table.Cell>
-
+                  <Table.Cell>
+                    {ele.checked ? "checked" : "unchecked"}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button onClick={() => deleteUser(ele.id)}>Delete</Button>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button onClick={() => updateUser(ele)}>Update</Button>
+                  </Table.Cell>
                 </Table.Row>
               ))}
-
-
             </Table.Body>
           </Table>
         </div>
-
-
+        <Button onClick={() => navigate('/create')}>Create User</Button>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-
-export default Dashboard
+export default Dashboard;
