@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  bodyground-color: red;
 }
 
 h1 {
@@ -46,6 +47,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 1rem;
 }
 button:hover {
   border-color: #646cff;
@@ -57,8 +59,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #213547;
   }
   a:hover {
     color: #747bff;

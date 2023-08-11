@@ -1,3 +1,9 @@
 .deleteIcon {
   color: red;
 }
+.icon-btn {
+  background: transparent;
+}
+/* .create-btn {
+  margin-top: 1rem;
+} */

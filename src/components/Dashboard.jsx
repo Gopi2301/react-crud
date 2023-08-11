@@ -54,17 +54,17 @@ const Dashboard = () => {
                     {ele.checked ? "Passed" : "Failed"}
                   </Table.Cell>
                   <Table.Cell>
-                    <Button onClick={() => deleteUser(ele.id)}><DeleteIcon color="warning" />
+                    <Button className="icon-btn" onClick={() => deleteUser(ele.id)}><DeleteIcon color="warning" />
                     </Button>
 
-                    <Button onClick={() => updateUser(ele)}><EditIcon color="primary" /></Button>
+                    <Button className="icon-btn" onClick={() => updateUser(ele)}><EditIcon color="primary" /></Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
           </Table>
         </div>
-        <Button onClick={() => navigate('/create')}>Create Student</Button>
+        <Button className="create-btn" onClick={() => navigate('/create')}>Create Student</Button>
       </div>
     </div>
   );
