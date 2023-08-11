@@ -1,0 +1,15 @@
+.inputContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+.submit-btn {
+  border: 1px solid green;
+}

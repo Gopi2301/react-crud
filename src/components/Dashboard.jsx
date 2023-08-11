@@ -6,7 +6,8 @@ import "../styles/dashboard.css";
 import { API_URL } from "../data/Url";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 const Dashboard = () => {
   const navigate = useNavigate();
   const [apiData, setAPIData] = useState([]);
@@ -34,15 +35,14 @@ const Dashboard = () => {
       <h1>DashBoard</h1>
       <div className="dashboard">
         <div className="">
-          <h2>User Data</h2>
+          <h2>Students Data</h2>
           <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>First Name</Table.HeaderCell>
                 <Table.HeaderCell>Last Name</Table.HeaderCell>
                 <Table.HeaderCell>Checked</Table.HeaderCell>
-                <Table.HeaderCell>Delete</Table.HeaderCell>
-                <Table.HeaderCell>Update</Table.HeaderCell>
+                <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -51,20 +51,20 @@ const Dashboard = () => {
                   <Table.Cell>{ele.firstName}</Table.Cell>
                   <Table.Cell>{ele.lastName}</Table.Cell>
                   <Table.Cell>
-                    {ele.checked ? "checked" : "unchecked"}
+                    {ele.checked ? "Passed" : "Failed"}
                   </Table.Cell>
                   <Table.Cell>
-                    <Button onClick={() => deleteUser(ele.id)}>Delete</Button>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Button onClick={() => updateUser(ele)}>Update</Button>
+                    <Button onClick={() => deleteUser(ele.id)}><DeleteIcon color="warning" />
+                    </Button>
+
+                    <Button onClick={() => updateUser(ele)}><EditIcon color="primary" /></Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
           </Table>
         </div>
-        <Button onClick={() => navigate('/create')}>Create User</Button>
+        <Button onClick={() => navigate('/create')}>Create Student</Button>
       </div>
     </div>
   );

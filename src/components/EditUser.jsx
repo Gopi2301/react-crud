@@ -3,6 +3,8 @@ import { Button, Checkbox, Form } from 'semantic-ui-react';
 import { API_URL } from '../data/Url';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/editUser.css'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const EditUser = (userId) => {
@@ -30,11 +32,11 @@ const EditUser = (userId) => {
     <div>
       <h2>Update User</h2>
       <Form>
-        <Form.Field>
+        <Form.Field className='inputContainer'>
           <label>First Name</label>
           <input value={firstName} onChange={event => setFirstName(event.target.value)} placeholder='First Name' />
         </Form.Field>
-        <Form.Field>
+        <Form.Field className='inputContainer'>
           <label>Last Name</label>
           <input value={lastName} onChange={event => setLastName(event.target.value)} placeholder='Last Name' />
         </Form.Field>
@@ -43,6 +45,8 @@ const EditUser = (userId) => {
         </Form.Field>
         <Button onClick={updateUser}>Update</Button>
       </Form>
+      <Button onClick={() => navigate('/')}><ArrowBackIcon className='arrow' />DashBoard</Button>
+
     </div>
   )
 }
